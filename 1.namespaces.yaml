@@ -1,0 +1,15 @@
+---
+kind: Project
+apiVersion: project.openshift.io/v1
+metadata:
+  name: redhat-citrix
+---
+kind: Project
+apiVersion: project.openshift.io/v1
+metadata:
+  name: redhat-citrix-utils
+---
+kind: Project
+apiVersion: project.openshift.io/v1
+metadata:
+  name: redhat-citrix-cloud

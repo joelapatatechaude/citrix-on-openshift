@@ -1,0 +1,30 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: citrix
+  namespace: redhat-citrix-utils
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: citrix-cloud
+  namespace: redhat-citrix-utils
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: citrix
+  namespace: redhat-citrix-utils
+  annotations:
+    kubernetes.io/service-account.name: citrix
+type: kubernetes.io/service-account-token
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: citrix-cloud
+  namespace: redhat-citrix-utils
+  annotations:
+    kubernetes.io/service-account.name: citrix-cloud
+type: kubernetes.io/service-account-token

@@ -1,0 +1,83 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: rb-citrix-cvad-mc
+  namespace: redhat-citrix   # <- permissions apply only in namespace b
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: redhat-citrix-cvad-machine-creation  # reference the ClusterRole
+subjects:
+  - kind: ServiceAccount
+    name: citrix
+    namespace: redhat-citrix-utils
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: rb-citrix-cvad-pm
+  namespace: redhat-citrix   # <- permissions apply only in namespace b
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: redhat-citrix-cvad-power-management  # reference the ClusterRole
+subjects:
+  - kind: ServiceAccount
+    name: citrix
+    namespace: redhat-citrix-utils
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: rb-citrix-cvad-wc
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: redhat-citrix-cvad-watcher-clusterview  # reference the ClusterRole
+subjects:
+  - kind: ServiceAccount
+    name: citrix
+    namespace: redhat-citrix-utils
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: rb-citrix-cloud-cvad-mc
+  namespace: redhat-citrix   # <- permissions apply only in namespace b
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: redhat-citrix-cvad-machine-creation  # reference the ClusterRole
+subjects:
+  - kind: ServiceAccount
+    name: citrix-cloud
+    namespace: redhat-citrix-utils
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: rb-citrix-cloud-cvad-pm
+  namespace: redhat-citrix   # <- permissions apply only in namespace b
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: redhat-citrix-cvad-power-management  # reference the ClusterRole
+subjects:
+  - kind: ServiceAccount
+    name: citrix-cloud
+    namespace: redhat-citrix-utils
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: rb-citrix-cloud-cvad-wc
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: redhat-citrix-cvad-watcher-clusterview  # reference the ClusterRole
+subjects:
+  - kind: ServiceAccount
+    name: citrix-cloud
+    namespace: redhat-citrix-utils
