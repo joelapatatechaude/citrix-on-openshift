@@ -1,0 +1,39 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: datavolume-cloner
+  namespace: redhat-citrix-utils
+rules:
+- apiGroups: ["cdi.kubevirt.io"]
+  resources: ["datavolumes/source"]
+  verbs: ["*"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: allow-clone-to-redhat-citrix-cloud
+  namespace: redhat-citrix-utils
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: redhat-citrix-cloud
+roleRef:
+  kind: Role
+  name: datavolume-cloner
+  apiGroup: rbac.authorization.k8s.io
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: allow-clone-to-redhat-citrix
+  namespace: redhat-citrix-utils
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: redhat-citrix
+roleRef:
+  kind: Role
+  name: datavolume-cloner
+  apiGroup: rbac.authorization.k8s.io
